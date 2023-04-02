@@ -1,39 +1,51 @@
+// import the readline module
+const readline = require('readline');
+
+// Initialize empty arrays and strings for grid generation
 let gridArr = [];
 let nested = [];
 let grid = "";
 
 function gridGen(x, y) {
     
-    // for each Y cord, create a new nested array withing gridArr
+    // For each row (y value), add a new nested array to gridArr
     for(let i = 0; i < y; i++) {
         gridArr.push(nested);
-        console.log("pushing 'nested' array into gridArr for y value: ", gridArr)
     }
     
-    // for each X cord, push the X cord to each nested array
+    // For each column (x value), add x to each nested array
     for(let j = 0; j < x; j++) {
         nested.push(x);
-        console.log("pushing x value into nested array for x value: ", nested)
-        console.log("gridArr after push: ", gridArr)
     }
  
-    // for each nested array, create a new line
+    // For each nested array, add a new line to the grid
     for(let i = 0; i < gridArr.length; i++) {
         if(grid != "") {
-            console.log(" for each gridArr.length (1,2,3 becuase its counting subarrays) grid is not empty, adding a new line")
             grid += "\n";
-            console.log("grid is now: ", grid)
         }
 
-        // for each X cord, add a 0 to the grid 
+        // For each column, add a 0 to the grid
         for(let j = 0; j < gridArr[i].length; j++) {
-            console.log("for each gridArr[i].length (1,2,3 becuase its counting subarrays) add a 0 to the grid")
             grid += " 0";
         }
     }
-    
+    // return the grid string
     return grid;
-    
 }
-console.log(gridArr)
-console.log(gridGen(3, 5));
+
+// create an interface to read from the command line
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+// add a question to the interface to get the x and y values
+rl.question('Enter a number for the x value: ', (x) => {
+    rl.question('Enter a number for the y value: ', (y) => {
+        // run the gridGen function and print the grid
+        console.log(gridGen(x, y));
+        // close the interface
+        rl.close();
+    });
+});
+
