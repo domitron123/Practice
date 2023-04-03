@@ -1,54 +1,21 @@
-// Define the array with all elements initialized to 0
-let myArr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+// import the readline module
+const readline = require('readline');
 
-
-
-// Define an empty string to store the grid
+// Initialize empty arrays and strings for grid generation
+let gridArr = [];
+let nested = [];
 let grid = "";
 
-let colCheck = true;
-// Set the maximum and minimum values for the random number generator
-let max = myArr.length;
-const min = 1;
-
-// Generate a random integer between min and max (inclusive)
-let mine = Math.floor(Math.random() * (max - min + 1)) + min;
-
-// Print the random number
-console.log(mine);
-
-
-// Loop through the rows of the array
-for(let i = 0; i < myArr.length; i++) {
-
-    // If the grid is not empty, add a new line character to separate the rows
-    if(grid != "") {
-        grid += "\n";
+function gridGen(x, y) {
+    for(let i = 0; i < y; i++) {
+        gridArr.push([]);
     }
-    //grid += (i + 1) + ":";
+    console.log("gridArr:", gridArr)
 
-    // Loop through the columns of the array
-    for(let j = 0; j < myArr[i].length; j++) {
-        // Add a space and a 0 to the grid for each element in the row
-        grid += " 0";
+    for(let j = 0; j < x; j++) {
+        gridArr[i].push(x);
     }
+    console.log("gridArr[i] push x:", gridArr)
 }
 
-// Print the grid
-console.log(grid);
-
-
-// THIS IS WEIRD AND NOT THE SAME 1/3 CHANCE 
-// mineX = Math.floor(Math.random() * 10);
-// for(let i = mineX; i < 1 || i > 3; i--) {
-//     if(i < 1) {
-//         mineX += 1;
-//         break;
-//     }
-//     else if(i > 3) {
-//         mineX -= 1;
-//     }
-//     else if(i === 3) {
-//         break;
-//     }
-// }
+gridGen(2, 3);
