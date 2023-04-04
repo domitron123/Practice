@@ -52,17 +52,20 @@ const rl = readline.createInterface({
 });
 
 // ask the user for desired grid coords to 'clear'
-rl.question('coords x: ', (chordX) => {
-    rl.question('coords y: ', (chordY) => {
+rl.question('coords x: ', (coordX) => {
+    rl.question('coords y: ', (coordY) => {
     
     console.clear();
-    // Assign the desired cell to 1, -1 from the user input so that the grid starts at 1,1 instead of 0,0
-    // This is only for the user expierence, the grid is still 0,0 based
-    gridArr[chordX - 1][chordY - 1] = 1;
     
-    if(chordX < 1 || chordX > 3 || chordY < 1 || chordY > 3) {
+    console.log(gridArr.length + 1)
+    if(coordX < 1 || coordX > (gridArr.length)|| coordY < 1|| coordY > (gridArr.length)) {
         console.log("Invalid coordinate, please enter a number between 1 and 3")
     } else {
+
+    // Assign the desired cell to 1, -1 from the user input so that the grid starts at 1,1 instead of 0,0
+    // This is only for the user expierence, the grid is still 0,0 based
+    gridArr[coordX - 1][coordY - 1] = 1;
+
     // Invoke the gridUpdate funciton to update the and re-log the grid
     gridUpdate();
     }
