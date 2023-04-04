@@ -46,8 +46,6 @@ function gridUpdate() {
     console.log(grid)
 }
 
-
-
 // create a user input with terminal 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -88,3 +86,19 @@ function clearCell() {
 gridGen(3, 3);
 gridUpdate()
 clearCell();
+
+
+// FUNCTION PLANNING
+/*
+gridGen(x, y) 
+- create an array with subarrays equal to the grid dimentions. Possibly only needs to run once unless restarting the game
+
+
+gridUpdate()
+- convert the gridArr to a string that can be printed to the console and handles any changes happening to the grid
+
+clearCell()
+- Ask the user for input of the desired cell to clear -> changes the value of the gridArr and sends it to gridUpdate() to update the grid
+- could split up into two functions - one for user input and one for clearing cells -> this can be one of many functions, like a flag function
+
+*/

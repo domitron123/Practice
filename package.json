@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "name": "practice",
+  "description": "Testing for SDV",
+  "version": "1.0.0",
+  "main": "msTEST.js",
+  "devDependencies": {},
+  "scripts": {
+    "dev": "nodemon msTEST.js",
+    "start": "node msTEST.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
