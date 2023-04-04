@@ -50,16 +50,16 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-
+console.log(gridArr)
 // ask the user for desired grid coords to 'clear'
 rl.question('coords x: ', (coordX) => {
     rl.question('coords y: ', (coordY) => {
     
     console.clear();
     
-    console.log(gridArr.length + 1)
-    if(coordX < 1 || coordX > (gridArr.length)|| coordY < 1|| coordY > (gridArr.length)) {
-        console.log("Invalid coordinate, please enter a number between 1 and 3")
+    // if the user input is not within the grid range return an error
+    if(coordX < 1 || coordX > (gridArr.length)|| coordY < 1|| coordY > (gridArr[0].length)) {
+        console.log("Invalid coordinate, please enter a number between 1 and " + gridArr[0].length + " for x and y")
     } else {
 
     // Assign the desired cell to 1, -1 from the user input so that the grid starts at 1,1 instead of 0,0
