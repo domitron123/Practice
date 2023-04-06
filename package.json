@@ -6,7 +6,6 @@
   "description": "Testing for SDV",
   "version": "1.0.0",
   "main": "msTEST.js",
-  "devDependencies": {},
   "scripts": {
     "dev": "nodemon msTEST.js",
     "start": "node msTEST.js",
