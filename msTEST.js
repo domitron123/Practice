@@ -3,6 +3,7 @@ const readline = require('readline');
 
 // Initialize empty arrays and strings for grid generation
 let gridArr = [];
+let initClear = false;
 
 gameOver = false;
 
@@ -21,6 +22,16 @@ function gridGen(x, y) {
 
 // gridUpate function that converts the girdArr to a tileable string 'grid'
 function gridUpdate() {
+
+    // ANCHOR bomb generation
+    // if it's the first clear, then change a random index of gridArr to 1 to assign the bombs
+    if(initClear == false) {
+        // change a random index of gridArr to 1
+        gridArr[Math.floor(Math.random() * gridArr.length)][Math.floor(Math.random() * gridArr[0].length)] = 2;
+
+        initClear = true;
+    }
+
     // Reset the grid string to nothing so it doesn't keep adding to the previous grid
     let grid = "   1  2  3";
               //1:[0][0][0] 
@@ -37,13 +48,18 @@ function gridUpdate() {
 
             //ANCHOR - if the value of the cell is 0, add a 0 to the grid, else add a 1
             if(gridArr[i][j] == 0) {
-                grid += "[" + 0 + "]"; 
-            } else {
-                grid += "[" + "-" + "]"; // can substitute characters with variables for mines
+                grid += "[" + "-" + "]"; 
+                // SAFE CELL
+            } else if(gridArr[i][j] == 1) {
+                grid += "[" + " " + "]"; 
+                // BOMB CELL
+            } else if(gridArr[i][j] == 2) {
+                grid += "[" + "B" + "]"; 
             }
         }
     }
     console.log(grid)
+    clearCell()
 }
 
 // create a user input with terminal 
@@ -57,7 +73,7 @@ function clearCell() {
     rl.question('coords x: ', (coordX) => {
         rl.question('coords y: ', (coordY) => {
         
-        console.clear();
+       
         
         // if the user input is not within the grid range return an error
         if(coordX < 1 || coordX > (gridArr.length)|| coordY < 1|| coordY > (gridArr[0].length)) {
@@ -66,10 +82,17 @@ function clearCell() {
 
         // Assign the desired cell to 1, -1 from the user input so that the grid starts at 1,1 instead of 0,0
         // This is only for the user expierence, the grid is still 0,0 based
-        gridArr[coordY - 1][coordX - 1] = 1;
+        gridArr[coordY - 1][coordX - 1] = 1
 
+        
+        
+        }
         // Invoke the gridUpdate funciton to update the and re-log the grid
-        gridUpdate();
+        gridUpdate()
+
+        // loop the functions if the game is not over
+        if(!gameOver) {
+            clearCell()
         }
 
         //TODO - add a game over function
@@ -78,14 +101,18 @@ function clearCell() {
         // }
 
         // close the interface
-        rl.close();
+     
         });
     });
+    
 }
 
-gridGen(3, 3);
+gridGen(3, 3)
 gridUpdate()
-clearCell();
+
+
+
+
 
 
 // FUNCTION PLANNING
