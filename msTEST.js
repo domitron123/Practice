@@ -4,7 +4,9 @@ const readline = require('readline');
 // Initialize empty arrays and strings for grid generation
 let gridArr = [];
 let initClear = false;
-
+let unclear = 0;
+let mine =  1;
+let clear = 2;
 gameOver = false;
 
 function gridGen(x, y) {
@@ -27,7 +29,7 @@ function gridUpdate() {
     // if it's the first clear, then change a random index of gridArr to 1 to assign the bombs
     if(initClear == false) {
         // change a random index of gridArr to 1
-        gridArr[Math.floor(Math.random() * gridArr.length)][Math.floor(Math.random() * gridArr[0].length)] = 2;
+        gridArr[Math.floor(Math.random() * gridArr.length)][Math.floor(Math.random() * gridArr[0].length)] = mine;
 
         initClear = true;
     }
@@ -47,13 +49,13 @@ function gridUpdate() {
         for(let j = 0; j < gridArr[i].length; j++) {
 
             //ANCHOR - if the value of the cell is 0, add a 0 to the grid, else add a 1
-            if(gridArr[i][j] == 0) {
+            if(gridArr[i][j] == unclear) {
                 grid += "[" + "-" + "]"; 
                 // SAFE CELL
-            } else if(gridArr[i][j] == 1) {
+            } else if(gridArr[i][j] == clear) {
                 grid += "[" + " " + "]"; 
                 // BOMB CELL
-            } else if(gridArr[i][j] == 2) {
+            } else if(gridArr[i][j] == mine) {
                 grid += "[" + "B" + "]"; 
             }
         }
@@ -82,7 +84,7 @@ function clearCell() {
 
         // Assign the desired cell to 1, -1 from the user input so that the grid starts at 1,1 instead of 0,0
         // This is only for the user expierence, the grid is still 0,0 based
-        gridArr[coordY - 1][coordX - 1] = 1
+        gridArr[coordY - 1][coordX - 1] = clear
 
         
         
