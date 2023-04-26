@@ -12,3 +12,16 @@
 
 // countDown(10)
 
+
+
+
+// function sum(a, b) {
+//     return a + b
+// }
+
+// console.log(sum(1, 2))
+
+
+let sum = (a, b) => a + b;
+
+console.log(sum(6, 9))
