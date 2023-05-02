@@ -8,7 +8,7 @@ let gridArr = [];
 let initMine = true;
 let unclear = 0;
 let mine =  1;
-let selected = false;
+let selected;
 
 gameOver = false;
 
