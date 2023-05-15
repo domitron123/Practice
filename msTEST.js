@@ -29,7 +29,7 @@ function gridGen(x, y) {
 // gridUpate function that converts the girdArr to a tileable string 'grid'
 function gridUpdate() {
     console.clear()
-
+    console.log(selected)
     // Reset / set the grid so it doesn't add to itself
             //1:[0][0][0] (column numbers)
     let grid = "   1  2  3";
@@ -45,7 +45,7 @@ function gridUpdate() {
 
         // for each element in each subarray 
         for(let j = 0; j < gridArr[i].length; j++) {
-            
+            //console.log(selected)
             // update grid string in relation to gridArr board state
             if(gridArr[i][j] == unclear || gridArr[i][j] == mine) {
                 grid += "[" + "x" + "]"
@@ -82,7 +82,7 @@ function clearCell() {
         initMine = false;
     }
     
-    console.log(gridArr) // debugging
+    //console.log(gridArr) // debugging
 
     // ask the user for desired grid coords to 'selected'
     rl.question('coords x: ', (coordX) => {
@@ -96,6 +96,7 @@ function clearCell() {
         // Assign the selected cell to 1, -1 from the user input so that the grid starts at 1,1 instead of 0,0
         // This is only for the user expierence, the grid is still 0,0 based
         selected = gridArr[coordY - 1][coordX - 1];
+        
         }
 
         // if its the first time the user has selected a cell, then generate a mine
